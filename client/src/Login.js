@@ -35,7 +35,7 @@ class Login extends React.Component {
         axios.post(`${url}/api/login`, { username: this.state.username, password: this.state.password })
         .then(res => {
             localStorage.setItem('token', res.data.token);
-            localStorage.setItem('username', this.state.username);
+            localStorage.setItem('user', JSON.stringify(res.data.user));
             this.setState({
                 isLoggedIn: true,
                 errorMsg: ''

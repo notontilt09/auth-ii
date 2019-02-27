@@ -22,10 +22,12 @@ class Users extends React.Component {
             'Authorization': localStorage.getItem('token')
         }})
             .then(res => {
+                const filteredByDept = res.data.filter(user => 
+                    user.department === JSON.parse(localStorage.getItem('user')).department
+                )
                 this.setState({
-                    users: res.data,
+                    users: filteredByDept,
                     isLoggedIn: true,
-                    currentUser: localStorage.getItem('username')
                 })
             })
             .catch(err => {
@@ -50,8 +52,8 @@ class Users extends React.Component {
                 <div className='users'>
                     <button onClick={this.logout}>Logout</button>
                     <h2>Users List</h2>
-                    {this.state.currentUser && 
-                        <h3>Logged in as {this.state.currentUser}</h3>
+                    {localStorage.getItem('user') && 
+                        <h3>Logged in as {JSON.parse(localStorage.getItem('user')).username}</h3>
                     }
                     <div className='users-list'>
                         {this.state.users.map(user => {
