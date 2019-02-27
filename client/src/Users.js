@@ -13,23 +13,22 @@ class Users extends React.Component {
         this.state = {
             isLoggedIn: false,
             users: [],
-            currentUser: localStorage.getItem('user') || '',
         }
     }
 
     componentDidMount() {
-        if (this.state.currentUser) {
-            axios.get(`${url}/api/protected/users`)
-                .then(res => {
-                    this.setState({
-                        users: res.data,
-                        isLoggedIn: true
-                    })
+        axios.get(`${url}/api/protected/users`, { 'headers': {
+            'Authorization': localStorage.getItem('token')
+        }})
+            .then(res => {
+                this.setState({
+                    users: res.data,
+                    isLoggedIn: true
                 })
-                .catch(err => {
-                    console.log(err);
-                })
-        }
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     routeToLogin = e => {
