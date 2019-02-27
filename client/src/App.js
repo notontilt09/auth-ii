@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
 
-import Register from './Register';
-import Login from './Login';
-import Users from './Users';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+import Users from './components/Users/Users';
 
 import './App.css';
 

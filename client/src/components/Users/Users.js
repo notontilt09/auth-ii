@@ -23,8 +23,8 @@ class Users extends React.Component {
         }})
             .then(res => {
                 const filteredByDept = res.data.filter(user => 
-                    user.department === JSON.parse(localStorage.getItem('user')).department
-                )
+                    user.department.toLowerCase() === JSON.parse(localStorage.getItem('user')).department.toLowerCase());
+
                 this.setState({
                     users: filteredByDept,
                     isLoggedIn: true,
