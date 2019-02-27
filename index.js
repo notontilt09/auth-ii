@@ -87,7 +87,9 @@ server.post('/api/login', async (req, res) => {
             res
                 .status(200)
                 .json({ 
-                    message: `Welcome ${user.username}!  Here's a token of my gratitude.`, token 
+                    message: `Welcome ${user.username}!  Here's a token of my gratitude.`, 
+                    token,
+                    user,
                 });
         } else {
             res.status(401).json({ message: 'You shall not pass!' });

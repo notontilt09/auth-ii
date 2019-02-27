@@ -61,6 +61,8 @@ class Users extends React.Component {
                                     <h3>{user.username}</h3>  
                                     <h2>Password-Hash</h2>
                                     <h3>{user.password}</h3>
+                                    <h2>Department</h2>
+                                    <h3>{user.department}</h3>
                                 </div>
                             )
                         })}
