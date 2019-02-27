@@ -1,0 +1,16 @@
+.user {
+    border: 1px solid grey;
+    margin: 5px auto;
+    width: 50%;
+    overflow: scroll;
+}
+
+.user h2 {
+    font-size: 16px;
+    color: gray;
+}
+
+.user h3 {
+    font-size: 12px;
+    margin-top: -10px;
+}
