@@ -97,9 +97,6 @@ server.post('/api/login', async (req, res) => {
     }
 });
 
-server.get('/api/protected/logout', protected, (req, res) => {
-});
-
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
     console.log(`\n *** Running on port ${port} **\n`);

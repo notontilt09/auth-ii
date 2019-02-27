@@ -12,6 +12,7 @@ class Register extends React.Component {
         this.state = {
             username: '',
             password: '',
+            department: '',
             errorMsg: '',
         }
     }
@@ -25,9 +26,9 @@ class Register extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         if (this.state.username.length > 2 && this.state.password.length > 7) {
-            axios.post(`${url}/api/register`, {username: this.state.username, password: this.state.password })
+            axios.post(`${url}/api/register`, {username: this.state.username, password: this.state.password, department: this.state.department })
                 .then(res => {
-                    this.props.history.push('/users');
+                    this.props.history.push('/');
                 })
                 .catch(err => {
                     this.setState({ errorMsg: err.response.data.message });
@@ -68,6 +69,14 @@ class Register extends React.Component {
                     {this.state.password && this.state.password.length < 8 &&
                         <h4 className='input-error'>Password must be at least 8 characters</h4>
                     }
+                    <input 
+                        required 
+                        type='text' 
+                        name='department' 
+                        placeholder='department'
+                        value={this.state.department} 
+                        onChange={this.handleChanges} 
+                    />
                     <button type='submit'>Register</button>
                 </form>
                 {this.state.errorMsg && 

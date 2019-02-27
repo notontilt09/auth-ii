@@ -13,6 +13,7 @@ class Users extends React.Component {
         this.state = {
             isLoggedIn: false,
             users: [],
+            currentUser: ''
         }
     }
 
@@ -23,12 +24,13 @@ class Users extends React.Component {
             .then(res => {
                 this.setState({
                     users: res.data,
-                    isLoggedIn: true
+                    isLoggedIn: true,
+                    currentUser: localStorage.getItem('username')
                 })
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
     }
 
     routeToLogin = e => {
@@ -38,13 +40,8 @@ class Users extends React.Component {
 
     logout = e => {
         e.preventDefault();
-        axios.get(`${url}/api/protected/logout`)
-            .then(res => {
-                this.props.history.push('/');
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        localStorage.removeItem('token')
+        this.props.history.push('/');
     }
 
     render() {
@@ -53,7 +50,9 @@ class Users extends React.Component {
                 <div className='users'>
                     <button onClick={this.logout}>Logout</button>
                     <h2>Users List</h2>
-                    <h3>Logged in as {this.state.currentUser}</h3>
+                    {this.state.currentUser && 
+                        <h3>Logged in as {this.state.currentUser}</h3>
+                    }
                     <div className='users-list'>
                         {this.state.users.map(user => {
                             return (
