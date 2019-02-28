@@ -6,14 +6,16 @@ const db = knex(knexConfig.development);
 
 module.exports = {
     add,
-    find,
+    findByDepartment,
     findBy,
     findById,
     db
 };
 
-function find() {
-    return db('users').select('id', 'username', 'password', 'department');
+function findByDepartment(department) {
+    return db('users')
+        .select('id', 'username', 'password', 'department')
+        .where(department)
 }
 
 function findBy(filter) {

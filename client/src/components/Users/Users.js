@@ -22,11 +22,9 @@ class Users extends React.Component {
             'Authorization': localStorage.getItem('token')
         }})
             .then(res => {
-                const filteredByDept = res.data.filter(user => 
-                    user.department.toLowerCase() === JSON.parse(localStorage.getItem('user')).department.toLowerCase());
-
+                console.log(res);
                 this.setState({
-                    users: filteredByDept,
+                    users: res.data,
                     isLoggedIn: true,
                 })
             })

@@ -40,7 +40,8 @@ const protected = (req, res, next) => {
 const generateToken = (user) => {
     const payload = {
         subject: user.id,
-        username: user.username
+        username: user.username,
+        department: user.department
     }
 
     const options = {
@@ -50,9 +51,10 @@ const generateToken = (user) => {
 }
 
 server.get('/api/protected/users', protected, async (req, res) => {
+    const department = req.decodedJwt.department
     try {
-       const users = await db.find()
-       res.status(200).json(users);
+        const users = await db.findByDepartment( {department} );
+        res.status(200).json(users);
     } catch (error) {
         res.status(500).json({ message: 'Something went wrong' });
     }
