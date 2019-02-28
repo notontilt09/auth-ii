@@ -18,7 +18,7 @@ class Users extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`${url}/api/protected/users`, { 'headers': {
+        axios.get(`${url}/api/users`, { 'headers': {
             'Authorization': localStorage.getItem('token')
         }})
             .then(res => {

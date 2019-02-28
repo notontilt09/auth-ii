@@ -32,7 +32,7 @@ class Login extends React.Component {
     
     handleSubmit = e => {
         e.preventDefault();
-        axios.post(`${url}/api/login`, { username: this.state.username, password: this.state.password })
+        axios.post(`${url}/api/auth/login`, { username: this.state.username, password: this.state.password })
         .then(res => {
             localStorage.setItem('token', res.data.token);
             // localStorage.setItem('user', JSON.stringify(res.data.user));
